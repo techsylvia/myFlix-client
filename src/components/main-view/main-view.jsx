@@ -1,6 +1,7 @@
-import React from " react";
+import React from "react";
 
 import { MovieView } from "../movie-view/movie-view";
+import { MovieCard } from "./movie-card";
 
 export class MainView extends React.Component {
   //way to identify whether there was a user click or not.
@@ -40,8 +41,21 @@ export class MainView extends React.Component {
 
     return (
       <div className="main-view">
+        <button
+          onClick={() => {
+            alert("Nice");
+          }}
+        >
+          Click me!
+        </button>
         {movies.map((movie) => (
-          <MovieCard key={movie._id} />
+          <MovieCard
+            key={movie._id}
+            movie={movie}
+            onMovieClick={(newSelectedMovie) => {
+              this.setState({ selectedMovie: newSelectedMovie });
+            }}
+          />
         ))}
       </div>
     );
