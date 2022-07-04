@@ -1,8 +1,9 @@
 import React from " react";
 
-import React from "react";
+import { MovieView } from "../movie-view/movie-view";
 
-class MainView extends React.Component {
+export class MainView extends React.Component {
+  //way to identify whether there was a user click or not.
   constructor() {
     super();
     this.state = {
@@ -26,10 +27,13 @@ class MainView extends React.Component {
           ImagePath: "...",
         },
       ],
+      selectedMovie: null,
     };
   }
   render() {
-    const { movies } = this.state;
+    const { movies, selectedMovie } = this.state;
+
+    if (selectedMovie) return <MovieView movie={selectedMovie} />;
 
     if (movies.length === 0)
       return <div className="main-view">The list is empty</div>;
