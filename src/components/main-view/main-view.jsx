@@ -31,9 +31,9 @@ export class MainView extends React.Component {
     };
   }
 
-  setSelectedMovie(newSelectedMovie) {
+  setSelectedMovie(movie) {
     this.setState({
-      selectedMovie: newSelectedMovie,
+      selectedMovie: movie,
     });
   }
 
@@ -45,7 +45,7 @@ export class MainView extends React.Component {
         <MovieView
           movie={selectedMovie}
           onBackClick={(newSelectedMovie) => {
-            this.setsSelectedMovie(newSelectedMovie);
+            this.setSelectedMovie(newSelectedMovie);
           }}
         />
       );
