@@ -31,37 +31,52 @@ export class MainView extends React.Component {
     };
   }
 
-  setSelectedMovie(movie) {
+  setSelectedMovie(newSelectedMovie) {
     this.setState({
-      selectedMovie: movie,
+      selectedMovie: newSelectedMovie,
     });
   }
 
   render() {
     const { movies, selectedMovie } = this.state;
 
-    if (selectedMovie) return <MovieView movie={selectedMovie} />;
+    if (selectedMovie)
+      return (
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={(newSelectedMovie) => {
+            this.setsSelectedMovie(newSelectedMovie);
+          }}
+        />
+      );
 
     if (movies.length === 0)
       return <div className="main-view">The list is empty</div>;
 
     return (
       <div className="main-view">
-        <button
-          onClick={() => {
-            alert("Nice!");
-          }}
-        >
-          Click me!
-        </button>
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie._id}
-            onMovieClick={(newSelectedMovie) => {
-              this.state.selectedMovie = newSelectedMovie;
-            }}
-          />
-        ))}
+        {selectedMovie ? (
+          <Row className="justify-content-md-center">
+            <Col md={8}>
+              <MovieView
+                movie={selectedMovie}
+                onBackClick={(newSelectedMovie) => {
+                  this.setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            </Col>
+          </Row>
+        ) : (
+          movies.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              onMovieClick={(newSelectedMovie) => {
+                this.setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          ))
+        )}
       </div>
     );
   }
