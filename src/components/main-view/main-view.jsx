@@ -41,6 +41,13 @@ export class MainView extends React.Component {
 
     return (
       <div className="main-view">
+        <button
+          onClick={() => {
+            alert("Nice!");
+          }}
+        >
+          Click me!
+        </button>
         {movies.map((movie) => (
           <MovieCard key={movie._id} movie={movie} />
         ))}

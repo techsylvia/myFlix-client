@@ -25314,7 +25314,7 @@ class MainView extends _reactDefault.default.Component {
             children: [
                 /*#__PURE__*/ _jsxRuntime.jsx("button", {
                     onClick: ()=>{
-                        alert("Nice");
+                        alert("Nice!");
                     },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
@@ -25325,11 +25325,6 @@ class MainView extends _reactDefault.default.Component {
                 }),
                 movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
                         movie: movie,
-                        onMovieClick: (newSelectedMovie)=>{
-                            this.setState({
-                                selectedMovie: newSelectedMovie
-                            });
-                        },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 52
