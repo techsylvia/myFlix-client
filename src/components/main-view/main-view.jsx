@@ -28,9 +28,15 @@ export class MainView extends React.Component {
           ImagePath: "...",
         },
       ],
-      selectedMovie: null,
     };
   }
+
+  setSelectedMovie(movie) {
+    this.setState({
+      selectedMovie: movie,
+    });
+  }
+
   render() {
     const { movies, selectedMovie } = this.state;
 

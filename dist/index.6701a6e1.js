@@ -25281,9 +25281,13 @@ class MainView extends _reactDefault.default.Component {
                     Description: "desc3...",
                     ImagePath: "..."
                 }, 
-            ],
-            selectedMovie: null
+            ]
         };
+    }
+    setSelectedMovie(movie) {
+        this.setState({
+            selectedMovie: movie
+        });
     }
     render() {
         const { movies , selectedMovie  } = this.state;
@@ -25291,7 +25295,7 @@ class MainView extends _reactDefault.default.Component {
             movie: selectedMovie,
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 37
+                lineNumber: 43
             },
             __self: this
         }));
@@ -25299,7 +25303,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 40
+                lineNumber: 46
             },
             __self: this,
             children: "The list is empty"
@@ -25308,7 +25312,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 43
+                lineNumber: 49
             },
             __self: this,
             children: [
@@ -25318,7 +25322,7 @@ class MainView extends _reactDefault.default.Component {
                     },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 44
+                        lineNumber: 50
                     },
                     __self: this,
                     children: "Click me!"
@@ -25329,7 +25333,7 @@ class MainView extends _reactDefault.default.Component {
                         },
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 52
+                            lineNumber: 58
                         },
                         __self: this
                     }, movie._id)
