@@ -49,7 +49,12 @@ export class MainView extends React.Component {
           Click me!
         </button>
         {movies.map((movie) => (
-          <MovieCard key={movie._id} movie={movie} />
+          <MovieCard
+            key={movie._id}
+            onMovieClick={(newSelectedMovie) => {
+              this.state.selectedMovie = newSelectedMovie;
+            }}
+          />
         ))}
       </div>
     );
