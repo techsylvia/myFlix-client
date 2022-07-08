@@ -25256,7 +25256,7 @@ var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _movieView = require("../movie-view/movie-view");
-var _movieCard = require("./movie-card");
+var _movieCard = require("../movie-card/movie-card");
 class MainView extends _reactDefault.default.Component {
     //way to identify whether there was a user click or not.
     constructor(){
@@ -25366,7 +25366,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","../movie-view/movie-view":"ikZdr","@parcel/transformer-js/src/esmodule-helpers.js":"bi1MP","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"b3yMP","react":"6TuXu","./movie-card":"gEtUe"}],"ikZdr":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","../movie-view/movie-view":"ikZdr","@parcel/transformer-js/src/esmodule-helpers.js":"bi1MP","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"b3yMP","react":"6TuXu","../movie-card/movie-card":"6EiBJ"}],"ikZdr":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$3741 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -25698,11 +25698,11 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"BzRHh"}],"gEtUe":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$a11c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react-refresh/runtime":"BzRHh"}],"6EiBJ":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$4249 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$a11c.prelude(module);
+$parcel$ReactRefreshHelpers$4249.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -25721,7 +25721,7 @@ class MovieCard extends _reactDefault.default.Component {
                 onMovieClick(movie);
             },
             __source: {
-                fileName: "src/components/main-view/movie-card.jsx",
+                fileName: "src/components/movie-card/movie-card.jsx",
                 lineNumber: 7
             },
             __self: this,
@@ -25730,7 +25730,7 @@ class MovieCard extends _reactDefault.default.Component {
     }
 }
 
-  $parcel$ReactRefreshHelpers$a11c.postlude(module);
+  $parcel$ReactRefreshHelpers$4249.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
