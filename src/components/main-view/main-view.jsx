@@ -1,7 +1,7 @@
 import React from "react";
 
 import { MovieView } from "../movie-view/movie-view";
-import { MovieCard } from "./movie-card";
+import { MovieCard } from "../movie-card/movie-card";
 
 export class MainView extends React.Component {
   //way to identify whether there was a user click or not.
