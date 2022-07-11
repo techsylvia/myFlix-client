@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 
-import { MovieView } from "../movie-view/movie-view";
-import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../MovieView/movie-view";
+import { MovieCard } from "../MovieCard/movie-card";
 
 export class MainView extends React.Component {
   //way to identify whether there was a user click or not.
@@ -26,7 +26,7 @@ export class MainView extends React.Component {
       });
   }
 
-  setSelectedMovie(movie) {
+  setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: movie,
     });
@@ -51,16 +51,12 @@ export class MainView extends React.Component {
     return (
       <div className="main-view">
         {selectedMovie ? (
-          <Row className="justify-content-md-center">
-            <Col md={8}>
-              <MovieView
-                movie={selectedMovie}
-                onBackClick={(newSelectedMovie) => {
-                  this.setSelectedMovie(newSelectedMovie);
-                }}
-              />
-            </Col>
-          </Row>
+          <MovieView
+            movie={selectedMovie}
+            onBackClick={(newSelectedMovie) => {
+              this.setSelectedMovie(newSelectedMovie);
+            }}
+          />
         ) : (
           movies.map((movie) => (
             <MovieCard
