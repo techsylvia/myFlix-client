@@ -33,12 +33,26 @@ export function LoginView(props) {
       });
     }
 
-   const handleSubmit = (e) => {
+     const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    // props.onLoggedIn(username);
+    /* console.log(username, password);
+    props.onLoggedIn(username); */
+    const isReq = validate();
+    if (isReq) {
+      // Send a request to the server for authentication
+      axios
+        .post("https://swagflix.herokuapp.com/login", {
+          Username: username,
+          Password: password,
+        })
+        .then((response) => {
+          const data = response.data;
+          props.onLoggedIn(data);
+        })
+        .catch((e) => {
+          console.log("no such user");
+        });
+    }
   };
 
     render() {

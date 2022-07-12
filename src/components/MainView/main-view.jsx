@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 
+import { LoginView } from "../login-view/login-view";
 import { MovieView } from "../MovieView/movie-view";
 import { MovieCard } from "../MovieCard/movie-card";
 
