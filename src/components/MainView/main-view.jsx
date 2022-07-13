@@ -9,8 +9,11 @@ export class MainView extends React.Component {
   //way to identify whether there was a user click or not.
   constructor() {
     super();
+    // Initial state is set to null
     this.state = {
       movies: [],
+      selectedMovie: null,
+      user: null,
     };
   }
 
@@ -26,10 +29,17 @@ export class MainView extends React.Component {
         console.log(error);
       });
   }
-
-  setSelectedMovie(newSelectedMovie) {
+  /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
+  setSelectedMovie(movie) {
     this.setState({
       selectedMovie: movie,
+    });
+  }
+  /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
+
+  onLoggedIn(user) {
+    this.setState({
+      user,
     });
   }
 
