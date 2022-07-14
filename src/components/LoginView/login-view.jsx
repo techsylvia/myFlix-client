@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [usernameErr, setUsernameErr] = useState("");
-  const [passwordErr, setPasswordErr] = useState("");
+  /* const [usernameErr, setUsernameErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");*/
 
   const handleSubmit = (e) => {
     e.preventDefault();
