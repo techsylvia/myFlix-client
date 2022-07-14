@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
-import { LoginView } from "../login-view/login-view";
+import { LoginView } from "../LoginView/login-view";
 import { MovieView } from "../MovieView/movie-view";
 import { MovieCard } from "../MovieCard/movie-card";
 
@@ -21,6 +22,22 @@ export class MainView extends React.Component {
     axios
       .get("https://[sylvmovieapp.herokuapp.com/movies")
       .then((response) => {
+        this.setState({
+          movies: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  getMovies(token) {
+    axios
+      .get("https://swagflix.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // Assign the result to the state
         this.setState({
           movies: response.data,
         });
