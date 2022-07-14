@@ -1,6 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
 
 export class MovieView extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      movies: [],
+      user: null,
+    };
+  }
   keypressCallback(event) {
     console.log(event.key);
   }
