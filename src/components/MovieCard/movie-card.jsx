@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 export class MovieCard extends React.Component {
+  addMovie(movie, user) {
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    console.log(movie);
+    console.log(token);
+  }
   render() {
     const { movie, onMovieClick } = this.props;
     return (

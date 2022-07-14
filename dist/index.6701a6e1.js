@@ -29668,7 +29668,15 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
 class MovieCard extends _reactDefault.default.Component {
+    addMovie(movie, user) {
+        const username = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+        console.log(movie);
+        console.log(token);
+    }
     render() {
         const { movie , onMovieClick  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
@@ -29677,7 +29685,7 @@ class MovieCard extends _reactDefault.default.Component {
             className: "movie-card",
             __source: {
                 fileName: "src/components/MovieCard/movie-card.jsx",
-                lineNumber: 8
+                lineNumber: 15
             },
             __self: this,
             children: movie.Title
@@ -29700,7 +29708,7 @@ MovieCard.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"bi1MP","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"b3yMP","prop-types":"1tgq3"}],"9r9Rz":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"bi1MP","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"b3yMP","prop-types":"1tgq3","axios":"iYoWk"}],"9r9Rz":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$c52a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
