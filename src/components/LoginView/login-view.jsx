@@ -16,7 +16,7 @@ export function LoginView(props) {
     if (isReq) {
       // Send a request to the server for authentication
       axios
-        .post("https://swagflix.herokuapp.com/login", {
+        .post("https://sylvmovieapp.herokuapp.com/login", {
           Username: username,
           Password: password,
         })
