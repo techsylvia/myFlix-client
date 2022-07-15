@@ -1,6 +1,7 @@
 import React from "react";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -12,22 +13,23 @@ export function LoginView(props) {
     e.preventDefault();
     console.log(username, password);
     props.onLoggedIn(username);
-    const isReq = validate();
-    if (isReq) {
-      // Send a request to the server for authentication
-      axios
-        .post("https://sylvmovieapp.herokuapp.com/login", {
+
+    // Send a request to the server for authentication
+    axios
+      .post("https://sylvmovieapp.herokuapp.com/login", null, {
+        params: {
           Username: username,
           Password: password,
-        })
-        .then((response) => {
-          const data = response.data;
-          props.onLoggedIn(data);
-        })
-        .catch((e) => {
-          console.log("no such user");
-        });
-    }
+        },
+      })
+      .then((response) => {
+        const data = response.data;
+        props.onLoggedIn(data);
+      })
+      .catch((e) => {
+        console.error(e);
+        console.log("no such user");
+      });
   };
 
   return (
@@ -36,21 +38,21 @@ export function LoginView(props) {
         Username:
         <input
           type="text"
-          value={this.state.username}
-          onChange={this.onUsernameChange}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
       </label>
       <label>
         Password:
         <input
           type="password"
-          value={this.state.password}
-          onChange={this.onPasswordChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <Button className="" type="submit" onClick={handleSubmit}>
+      <button className="" type="submit" onClick={handleSubmit}>
         Submit
-      </Button>
+      </button>
     </form>
   );
 }
