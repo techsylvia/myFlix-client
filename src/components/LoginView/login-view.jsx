@@ -2,6 +2,7 @@ import React from "react";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -47,9 +48,9 @@ export function LoginView(props) {
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <button className="" type="submit" onClick={handleSubmit}>
+      <Button className="" type="submit" onClick={handleSubmit}>
         Submit
-      </button>
+      </Button>
     </form>
   );
 }
