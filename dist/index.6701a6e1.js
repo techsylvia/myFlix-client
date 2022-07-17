@@ -25409,8 +25409,6 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _loginView = require("../LoginView/login-view");
 var _movieView = require("../MovieView/movie-view");
 var _movieCard = require("../MovieCard/movie-card");
@@ -25422,43 +25420,36 @@ class MainView extends _reactDefault.default.Component {
         this.state = {
             movies: [],
             selectedMovie: null,
-            user: null
+            user: null,
+            token: null
         };
     }
     componentDidMount() {
-        _axiosDefault.default.get("https://[sylvmovieapp.herokuapp.com/movies").then((response)=>{
-            this.setState({
-                movies: response.data
-            });
-        }).catch((error)=>{
-            console.log(error);
-        });
-    }
-    getMovies(token) {
-        _axiosDefault.default.get("https://swagflix.herokuapp.com/movies", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            // Assign the result to the state
-            this.setState({
-                movies: response.data
-            });
-        }).catch((error)=>{
-            console.log(error);
-        });
+        if (!this.state.token) return;
     }
     componentDidUpdate() {
-    // code executed right after component's state or props are changed.
+        if (this.state.movies.length > 1) return;
+        _axiosDefault.default.get("https://sylvmovieapp.herokuapp.com/movies", {
+            headers: {
+                Authorization: `Bearer ${this.state.token}`
+            }
+        }).then((response)=>{
+            this.setState({
+                movies: response.data
+            });
+        }).catch((error)=>{
+            console.log(error);
+        });
     }
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/ setSelectedMovie(movie) {
         this.setState({
             selectedMovie: movie
         });
     }
-    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/ onLoggedIn(user) {
+    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/ onLoggedIn(data) {
         this.setState({
-            user
+            user: data.user.Username,
+            token: data.token
         });
     }
     render() {
@@ -25468,7 +25459,7 @@ class MainView extends _reactDefault.default.Component {
             ,
             __source: {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 72
+                lineNumber: 60
             },
             __self: this
         }));
@@ -25476,7 +25467,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 74
+                lineNumber: 62
             },
             __self: this,
             children: "!"
@@ -25485,7 +25476,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 77
+                lineNumber: 65
             },
             __self: this,
             children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
@@ -25495,7 +25486,7 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/MainView/main-view.jsx",
-                    lineNumber: 79
+                    lineNumber: 67
                 },
                 __self: this
             }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
@@ -25505,7 +25496,7 @@ class MainView extends _reactDefault.default.Component {
                     },
                     __source: {
                         fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 87
+                        lineNumber: 75
                     },
                     __self: this
                 }, movie._id)
@@ -25520,7 +25511,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","../MovieView/movie-view":"dV8Or","../MovieCard/movie-card":"3Mcqa","@parcel/transformer-js/src/esmodule-helpers.js":"bi1MP","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"b3yMP","prop-types":"1tgq3","../LoginView/login-view":"9r9Rz"}],"iYoWk":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","../MovieView/movie-view":"dV8Or","../MovieCard/movie-card":"3Mcqa","@parcel/transformer-js/src/esmodule-helpers.js":"bi1MP","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"b3yMP","../LoginView/login-view":"9r9Rz"}],"iYoWk":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"3QmO2"}],"3QmO2":[function(require,module,exports) {
@@ -29734,8 +29725,6 @@ function LoginView(props) {
     /* const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");*/ const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log(username, password);
-        props.onLoggedIn(username);
         // Send a request to the server for authentication
         _axiosDefault.default.post("https://sylvmovieapp.herokuapp.com/login", null, {
             params: {
@@ -29753,14 +29742,14 @@ function LoginView(props) {
     return(/*#__PURE__*/ _jsxRuntime.jsxs("form", {
         __source: {
             fileName: "src/components/LoginView/login-view.jsx",
-            lineNumber: 36
+            lineNumber: 33
         },
         __self: this,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsxs("label", {
                 __source: {
                     fileName: "src/components/LoginView/login-view.jsx",
-                    lineNumber: 37
+                    lineNumber: 34
                 },
                 __self: this,
                 children: [
@@ -29772,7 +29761,7 @@ function LoginView(props) {
                         ,
                         __source: {
                             fileName: "src/components/LoginView/login-view.jsx",
-                            lineNumber: 39
+                            lineNumber: 36
                         },
                         __self: this
                     })
@@ -29781,7 +29770,7 @@ function LoginView(props) {
             /*#__PURE__*/ _jsxRuntime.jsxs("label", {
                 __source: {
                     fileName: "src/components/LoginView/login-view.jsx",
-                    lineNumber: 45
+                    lineNumber: 42
                 },
                 __self: this,
                 children: [
@@ -29793,7 +29782,7 @@ function LoginView(props) {
                         ,
                         __source: {
                             fileName: "src/components/LoginView/login-view.jsx",
-                            lineNumber: 47
+                            lineNumber: 44
                         },
                         __self: this
                     })
@@ -29805,7 +29794,7 @@ function LoginView(props) {
                 onClick: handleSubmit,
                 __source: {
                     fileName: "src/components/LoginView/login-view.jsx",
-                    lineNumber: 53
+                    lineNumber: 50
                 },
                 __self: this,
                 children: "Submit"

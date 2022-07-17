@@ -11,9 +11,6 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    props.onLoggedIn(username);
-
     // Send a request to the server for authentication
     axios
       .post("https://sylvmovieapp.herokuapp.com/login", null, {

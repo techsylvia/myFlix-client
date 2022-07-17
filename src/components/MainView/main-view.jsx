@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
 
 import { LoginView } from "../LoginView/login-view";
 import { MovieView } from "../MovieView/movie-view";
@@ -15,40 +14,28 @@ export class MainView extends React.Component {
       movies: [],
       selectedMovie: null,
       user: null,
+      token: null,
     };
   }
 
   componentDidMount() {
-    axios
-      .get("https://[sylvmovieapp.herokuapp.com/movies")
-      .then((response) => {
-        this.setState({
-          movies: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  getMovies(token) {
-    axios
-      .get("https://swagflix.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (!this.state.token) return;
   }
 
   componentDidUpdate() {
-    // code executed right after component's state or props are changed.
+    if (this.state.movies.length > 1) return;
+    axios
+      .get("https://sylvmovieapp.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${this.state.token}` },
+      })
+      .then((response) => {
+        this.setState({
+          movies: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
   setSelectedMovie(movie) {
@@ -58,9 +45,10 @@ export class MainView extends React.Component {
   }
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
 
-  onLoggedIn(user) {
+  onLoggedIn(data) {
     this.setState({
-      user,
+      user: data.user.Username,
+      token: data.token,
     });
   }
 
