@@ -64,7 +64,7 @@ export class MainView extends React.Component {
     return (
       <div className="main-view">
         {selectedMovie ? (
-          <Row>
+          <Row className="justify-content-md-center">
             <Col md={8}>
               <MovieView
                 movie={selectedMovie}
@@ -75,15 +75,19 @@ export class MainView extends React.Component {
             </Col>
           </Row>
         ) : (
-          movies.map((movie) => (
-            <MovieCard
-              key={movie._id}
-              movie={movie}
-              onMovieClick={(newSelectedMovie) => {
-                this.setSelectedMovie(newSelectedMovie);
-              }}
-            />
-          ))
+          <Row className="justify-content-md-center">
+            {movies.map((movie) => (
+              <Col md={3}>
+                <MovieCard
+                  key={movie._id}
+                  movie={movie}
+                  onMovieClick={(newSelectedMovie) => {
+                    this.setSelectedMovie(newSelectedMovie);
+                  }}
+                />
+              </Col>
+            ))}
+          </Row>
         )}
       </div>
     );

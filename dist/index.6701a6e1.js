@@ -25489,6 +25489,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this,
             children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(Row, {
+                className: "justify-content-md-center",
                 __source: {
                     fileName: "src/components/MainView/main-view.jsx",
                     lineNumber: 67
@@ -25516,18 +25517,34 @@ class MainView extends _reactDefault.default.Component {
                         " "
                     ]
                 })
-            }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                    movie: movie,
-                    onMovieClick: (newSelectedMovie)=>{
-                        this.setSelectedMovie(newSelectedMovie);
-                    },
-                    __source: {
-                        fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 79
-                    },
-                    __self: this
-                }, movie._id)
-            )
+            }) : /*#__PURE__*/ _jsxRuntime.jsx(Row, {
+                className: "justify-content-md-center",
+                __source: {
+                    fileName: "src/components/MainView/main-view.jsx",
+                    lineNumber: 78
+                },
+                __self: this,
+                children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(Col, {
+                        md: 3,
+                        __source: {
+                            fileName: "src/components/MainView/main-view.jsx",
+                            lineNumber: 80
+                        },
+                        __self: this,
+                        children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
+                            movie: movie,
+                            onMovieClick: (newSelectedMovie)=>{
+                                this.setSelectedMovie(newSelectedMovie);
+                            },
+                            __source: {
+                                fileName: "src/components/MainView/main-view.jsx",
+                                lineNumber: 81
+                            },
+                            __self: this
+                        }, movie._id)
+                    })
+                )
+            })
         }));
     }
 }
