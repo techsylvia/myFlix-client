@@ -25502,6 +25502,7 @@ class MainView extends _reactDefault.default.Component {
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
+                        fluid: true,
                         __source: {
                             fileName: "src/components/MainView/main-view.jsx",
                             lineNumber: 70
@@ -25583,21 +25584,21 @@ class MainView extends _reactDefault.default.Component {
                                                         lineNumber: 79
                                                     },
                                                     __self: this,
-                                                    children: "Another action"
+                                                    children: "Link"
                                                 }),
                                                 /*#__PURE__*/ _jsxRuntime.jsx(_navDropdownDefault.default.Item, {
                                                     href: "#action/3.3",
                                                     __source: {
                                                         fileName: "src/components/MainView/main-view.jsx",
-                                                        lineNumber: 82
+                                                        lineNumber: 80
                                                     },
                                                     __self: this,
-                                                    children: "Something"
+                                                    children: "Link"
                                                 }),
                                                 /*#__PURE__*/ _jsxRuntime.jsx(_navDropdownDefault.default.Divider, {
                                                     __source: {
                                                         fileName: "src/components/MainView/main-view.jsx",
-                                                        lineNumber: 85
+                                                        lineNumber: 81
                                                     },
                                                     __self: this
                                                 }),
@@ -25605,10 +25606,10 @@ class MainView extends _reactDefault.default.Component {
                                                     href: "#action/3.4",
                                                     __source: {
                                                         fileName: "src/components/MainView/main-view.jsx",
-                                                        lineNumber: 86
+                                                        lineNumber: 82
                                                     },
                                                     __self: this,
-                                                    children: "Separated link"
+                                                    children: "Link"
                                                 })
                                             ]
                                         })
@@ -25622,14 +25623,14 @@ class MainView extends _reactDefault.default.Component {
                     className: "justify-content-md-center",
                     __source: {
                         fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 95
+                        lineNumber: 89
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
                         md: 8,
                         __source: {
                             fileName: "src/components/MainView/main-view.jsx",
-                            lineNumber: 96
+                            lineNumber: 90
                         },
                         __self: this,
                         children: [
@@ -25640,7 +25641,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/MainView/main-view.jsx",
-                                    lineNumber: 97
+                                    lineNumber: 91
                                 },
                                 __self: this
                             }),
@@ -25651,14 +25652,14 @@ class MainView extends _reactDefault.default.Component {
                     className: "justify-content-md-center",
                     __source: {
                         fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 106
+                        lineNumber: 100
                     },
                     __self: this,
                     children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                             md: 3,
                             __source: {
                                 fileName: "src/components/MainView/main-view.jsx",
-                                lineNumber: 108
+                                lineNumber: 102
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
@@ -25668,7 +25669,7 @@ class MainView extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/MainView/main-view.jsx",
-                                    lineNumber: 109
+                                    lineNumber: 103
                                 },
                                 __self: this
                             }, movie._id)
