@@ -25619,62 +25619,71 @@ class MainView extends _reactDefault.default.Component {
                         ]
                     })
                 }),
-                selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
-                    className: "justify-content-md-center",
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
+                    fluid: true,
+                    className: "mainViewContainer",
                     __source: {
                         fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 89
+                        lineNumber: 88
                     },
                     __self: this,
-                    children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
-                        md: 8,
+                    children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
+                        className: "justify-content-md-center",
                         __source: {
                             fileName: "src/components/MainView/main-view.jsx",
                             lineNumber: 90
                         },
                         __self: this,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
-                                movie: selectedMovie,
-                                onBackClick: (newSelectedMovie)=>{
-                                    this.setSelectedMovie(newSelectedMovie);
-                                },
-                                __source: {
-                                    fileName: "src/components/MainView/main-view.jsx",
-                                    lineNumber: 91
-                                },
-                                __self: this
-                            }),
-                            " "
-                        ]
-                    })
-                }) : /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
-                    className: "justify-content-md-center",
-                    __source: {
-                        fileName: "src/components/MainView/main-view.jsx",
-                        lineNumber: 100
-                    },
-                    __self: this,
-                    children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
-                            md: 3,
+                        children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
+                            md: 8,
                             __source: {
                                 fileName: "src/components/MainView/main-view.jsx",
-                                lineNumber: 102
+                                lineNumber: 91
                             },
                             __self: this,
-                            children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                                movie: movie,
-                                onMovieClick: (newSelectedMovie)=>{
-                                    this.setSelectedMovie(newSelectedMovie);
-                                },
+                            children: [
+                                /*#__PURE__*/ _jsxRuntime.jsx(_movieView.MovieView, {
+                                    movie: selectedMovie,
+                                    onBackClick: (newSelectedMovie)=>{
+                                        this.setSelectedMovie(newSelectedMovie);
+                                    },
+                                    __source: {
+                                        fileName: "src/components/MainView/main-view.jsx",
+                                        lineNumber: 92
+                                    },
+                                    __self: this
+                                }),
+                                " "
+                            ]
+                        })
+                    }) : /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
+                        className: "justify-content-md-center",
+                        __source: {
+                            fileName: "src/components/MainView/main-view.jsx",
+                            lineNumber: 101
+                        },
+                        __self: this,
+                        children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                                md: 3,
                                 __source: {
                                     fileName: "src/components/MainView/main-view.jsx",
                                     lineNumber: 103
                                 },
-                                __self: this
-                            }, movie._id)
-                        })
-                    )
+                                __self: this,
+                                children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
+                                    movie: movie,
+                                    onMovieClick: (newSelectedMovie)=>{
+                                        this.setSelectedMovie(newSelectedMovie);
+                                    },
+                                    __source: {
+                                        fileName: "src/components/MainView/main-view.jsx",
+                                        lineNumber: 104
+                                    },
+                                    __self: this
+                                }, movie._id)
+                            })
+                        )
+                    })
                 })
             ]
         }));
@@ -29835,8 +29844,6 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _axios = require("axios");
-var _axiosDefault = parcelHelpers.interopDefault(_axios);
 class MovieCard extends _reactDefault.default.Component {
     addMovie(movie, user) {
         const username = localStorage.getItem("user");
@@ -29852,7 +29859,7 @@ class MovieCard extends _reactDefault.default.Component {
             className: "movie-card",
             __source: {
                 fileName: "src/components/MovieCard/movie-card.jsx",
-                lineNumber: 15
+                lineNumber: 14
             },
             __self: this,
             children: movie.Title
@@ -29861,11 +29868,20 @@ class MovieCard extends _reactDefault.default.Component {
 }
 MovieCard.propTypes = {
     movie: _propTypesDefault.default.shape({
-        Title: _propTypesDefault.default.string.isRequired,
+        Title: _propTypesDefault.default.string,
         Description: _propTypesDefault.default.string.isRequired,
-        ImageURL: _propTypesDefault.default.string.isRequired,
+        ReleaseYear: _propTypesDefault.default.string.isRequired,
+        RunTime: _propTypesDefault.default.string.isRequired,
         Genre: _propTypesDefault.default.shape({
-        })
+            Name: _propTypesDefault.default.string.isRequired,
+            Description: _propTypesDefault.default.string.isRequired
+        }),
+        Director: _propTypesDefault.default.shape({
+            Name: _propTypesDefault.default.string.isRequired,
+            Bio: _propTypesDefault.default.string.isRequired,
+            Birth: _propTypesDefault.default.string.isRequired
+        }),
+        ImagePath: _propTypesDefault.default.string
     }).isRequired,
     onMovieClick: _propTypesDefault.default.func.isRequired
 };
@@ -29875,7 +29891,7 @@ MovieCard.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"bi1MP","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"b3yMP","prop-types":"1tgq3","axios":"iYoWk"}],"9r9Rz":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"bi1MP","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"b3yMP","prop-types":"1tgq3"}],"9r9Rz":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$c52a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
