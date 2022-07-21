@@ -2,8 +2,18 @@ import React from "react";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import {
+  Button,
+  Form,
+  Button,
+  Card,
+  CardGroup,
+  Container,
+  Col,
+  Row,
+  Navbar,
+  Nav,
+} from "react-bootstrap/Button";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -32,26 +42,73 @@ export function LoginView(props) {
   };
 
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Username</Form.Label>
-        <Form.Control type="text" placeholder="Enter username" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+    <Container fluid className="loginContainer my-3 mx-12 ">
+      <Navbar bg="light" expand="lg">
+        <Container>
+          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#link">Link</Nav.Link>
+              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">
+                  Another action
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">
+                  Something
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">
+                  Separated link
+                </NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Row>
+        <Col>
+          <CardGroup>
+            <Card>
+              <Card.Body className="mt-3 ">
+                <Card.Title>Welcome to MyFlix</Card.Title>
+                <Form>
+                  <Form.Group controlId="formUserName">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control
+                      type="text"
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                      placeholder="Enter Username"
+                    />
+                  </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
-    </Form>
+                  <Form.Group controlId="formPassword">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control
+                      type="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      placeholder="Enter Password"
+                    />
+                  </Form.Group>
+                  <Button
+                    className="mt-3"
+                    variant="primary"
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    Submit
+                  </Button>
+                </Form>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
