@@ -1,9 +1,12 @@
 import React from "react";
 import axios from "axios";
+import { Navbar, Container, Col, Row, Nav } from "react-bootstrap";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 import { LoginView } from "../LoginView/login-view";
 import { MovieView } from "../MovieView/movie-view";
 import { MovieCard } from "../MovieCard/movie-card";
+import { RegistrationView } from "../../RegistrationView/registration-view";
 
 export class MainView extends React.Component {
   //way to identify whether there was a user click or not.
@@ -53,16 +56,49 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, selectedMovie } = this.state;
+    const { movies, selectedMovie, user, registered } = this.state;
 
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-    if (!this.state.user)
+    if (!user)
       return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
+
+    // If the user is on register, show registration view and register
+    if (!registered)
+      return (
+        <RegistrationView
+          onRegistration={(register) => this.onRegistration(register)}
+        />
+      );
 
     if (movies.length === 0) return <div className="main-view">!</div>;
 
     return (
       <div className="main-view">
+        <Navbar bg="light" expand="lg">
+          <Container>
+            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="#link">Link</Nav.Link>
+                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">
+                    Another action
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">
+                    Something
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action/3.4">
+                    Separated link
+                  </NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
         {selectedMovie ? (
           <Row className="justify-content-md-center">
             <Col md={8}>
