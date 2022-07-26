@@ -11,9 +11,10 @@ import {
   Container,
   Col,
   Row,
-  Navbar,
   Nav,
-} from "react-bootstrap/Button";
+  Navbar,
+  NavDropdown,
+} from "react-bootstrap";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
