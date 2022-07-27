@@ -1,4 +1,21 @@
+body {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 1.2rem !important;
+  background: linear-gradient(to right, #434343 0%, black 100%);
+  min-height: 100vh;
+}
+
 .my-flix {
-  color: steelblue;
+  font-size: 2em;
+}
+.navbar {
+  margin-bottom: 8px;
+}
+
+.mt-3 {
+  color: #ff0000;
+}
+form {
+  background: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 20%, #efefef 38%, #d9d9d9 95%, #bcbcbc 100%);
 }
 /*# sourceMappingURL=index.caa67093.css.map */

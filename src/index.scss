@@ -1,5 +1,11 @@
-$color: steelblue;
+body {
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 1.2rem !important;
+  background: linear-gradient(to right, #434343 0%, black 100%);
+  min-height: 100vh;
+  
+}
 
 .my-flix {
-  color: $color;
+  font-size: 2em;
 }

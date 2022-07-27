@@ -16,6 +16,8 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 
+import "./login-view.scss";
+
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -44,9 +46,9 @@ export function LoginView(props) {
 
   return (
     <Container fluid className="loginContainer my-3 mx-12 ">
-      <Navbar bg="light" expand="lg">
+      <Navbar className="navbar" bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="#home">My Flix</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -97,7 +99,7 @@ export function LoginView(props) {
                   </Form.Group>
                   <Button
                     className="mt-3"
-                    variant="primary"
+                    variant="danger"
                     type="submit"
                     onClick={handleSubmit}
                   >
