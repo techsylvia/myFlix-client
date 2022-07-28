@@ -60,6 +60,23 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
+  // src/components/main-view/main-view.jsx
+  getMovies(token) {
+    axios
+      .get("YOUR_API_URL/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        // Assign the result to the state
+        this.setState({
+          movies: response.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   render() {
     const { movies, selectedMovie } = this.state;
 
