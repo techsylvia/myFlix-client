@@ -5,7 +5,8 @@ import axios from 'axios';
 import { MovieCard } from '../movieCard/movie-card';
 
 
-export function ProfileView({ movies }) {
+export function ProfileView({ user, movies }) {
+  console.log(movies)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -19,14 +20,15 @@ export function ProfileView({ movies }) {
 
   const getUser = () => {
     let token = localStorage.getItem('token');
-    let user = localStorage.getItem("user");
-    axios.get(`https://amro-mansour-movie-api.herokuapp.com/users/${user}`, {
+    let username = user ?? localStorage.getItem("user");
+    axios.get(`https://sylvmovieapp.herokuapp.com/user/${username}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then((response) => {
         setUsername(response.data.Username)
         setEmail(response.data.Email)
-        setFavouriteMovies(response.data.FavouriteMovies)
+        setFavouriteMovies(response.data.FavoriteMovies ?? [])
+        setBirthday(new Date(response.data.Birthday).toISOString().substring(0, 10))
         console.log(response.data)
       })
       .catch(e => {
@@ -37,12 +39,11 @@ export function ProfileView({ movies }) {
   // Update users info 
   const updateUser = () => {
     let token = localStorage.getItem('token');
-    let user = localStorage.getItem("user");
-    axios.put(`https://amro-mansour-movie-api.herokuapp.com/users/${user}`, {
-      Username: username,
-      Email: email, //Email is a variable which holds the email
-      Birthday: birthday,
-      Password: password
+    axios.put(`https://sylvmovieapp.herokuapp.com/user/${username}`, {
+      username: username,
+      email: email, //Email is a variable which holds the email
+      birthdate: birthday,
+      password: password
     },
       {
         headers: {
@@ -60,10 +61,10 @@ export function ProfileView({ movies }) {
 
   // Delete user 
   const deleteUser = () => {
-    setShowModal(false)
+    handleClose()
     let token = localStorage.getItem('token');
-    let user = localStorage.getItem("user");
-    axios.delete(`https://amro-mansour-movie-api.herokuapp.com/users/${user}`,
+    let username = localStorage.getItem("user");
+    axios.delete(`https://sylvmovieapp.herokuapp.com/user/${username}`,
       {
         headers: {
           Authorization: 'Bearer ' + token
@@ -81,23 +82,17 @@ export function ProfileView({ movies }) {
   }
 
   const renderFavourits = () => {
-    console.log(movies)
-    if (movies.length + 0) {
-
-      return (
-        <Row className="justify-content-md-center">
-
-          {favouriteMovies.length === 0 ? (<h5>Add some movies to your list</h5>) : (
-            favouriteMovies.map((movieId, i) => (
-              <Col md={6} lg={4}>
-                <MovieCard key={`${i}-${movieId}`} movie={movies.find(m => m._id == movieId)} />
-              </Col>
-            ))
-          )}
-
-        </Row>
-      )
-    }
+    return (
+      <Row className="justify-content-md-center">
+        {favouriteMovies.length === 0 ? (<h5>Add some movies to your list</h5>) : (
+          favouriteMovies.map((movieId, i) => (
+            <Col md={6} lg={4}>
+              <MovieCard key={`${i}`} movie={movies.find(el => el._id === movieId)} />
+            </Col>
+          ))
+        )}
+      </Row>
+    )
   }
 
   // Functions needed to open and close the modal (below) to delete a user 
@@ -160,13 +155,11 @@ export function ProfileView({ movies }) {
           </Button>
         </Form>
 
-        {/* Calling the function that renders the modal to delete the users account */}
         {cancelUserModal()}
 
         <p></p>
         <h2>Favourite Movies:</h2>
 
-        {/* Calling the function that renders the users favourite movies on the profile page */}
         {renderFavourits()}
 
       </Container>

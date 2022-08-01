@@ -1,16 +1,16 @@
 import React from "react";
 import axios from "axios";
-// import { Navbar, Container, Col, Row, Nav } from "react-bootstrap";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { Row, Col } from 'react-bootstrap';
 
 import { LoginView } from "../LoginView/login-view";
 import { MovieView } from "../MovieView/movie-view";
 import { MovieCard } from "../MovieCard/movie-card";
-import { RegistrationView } from "../../RegistrationView/registration-view";
-import { Navbar } from '../Navbar';
-import { ProfileView } from "../ProfileView";
-
+import { RegistrationView } from "../RegistrationView/registration-view";
+import { Navbar } from '../Navbar/navbar';
+import { ProfileView } from "../ProfileView/profile-view";
+import { DirectorView } from '../DirectorView/director-view';
+import { GenreView } from '../GenreView/genre-view';
 export class MainView extends React.Component {
   //way to identify whether there was a user click or not.
   constructor() {
@@ -82,9 +82,7 @@ export class MainView extends React.Component {
       user = localStorage.getItem("user")
     }
 
-    console.log(`user: ${user}`);
     console.log(`movies: ${movies}`);
-    console.log(`token: ${this.state.token}`);
     return (
       <BrowserRouter>
         <Navbar user={user} />
@@ -146,7 +144,7 @@ export class MainView extends React.Component {
           <Route path={`/user/${user}`} render={({ match, history }) => {
             if (!user) return <Redirect to="/" />
             return <Col>
-              <ProfileView user={user} history={history} movies={movies} onBackClick={() => history.goBack()} />
+              <ProfileView user={user} movies={movies} onBackClick={() => history.goBack()} />
             </Col>
           }} />
 
