@@ -6,7 +6,6 @@ import { MovieCard } from '../movieCard/movie-card';
 
 
 export function ProfileView({ user, movies }) {
-  console.log(movies)
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
