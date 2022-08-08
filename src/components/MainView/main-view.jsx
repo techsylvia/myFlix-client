@@ -36,10 +36,12 @@ export class MainView extends React.Component {
         headers: { Authorization: `Bearer ${this.state.token}` },
       })
       .then((response) => {
-        this.setState({
-          ...this.state,
-          movies: response.data,
-        });
+        //     this.setState({
+        //      ...this.state,
+        //      movies: response.data,
+        //       });
+        //    })
+        this.props.setMovies(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -91,7 +93,6 @@ export class MainView extends React.Component {
     console.log(`movies: ${movies}`);
     return (
       <BrowserRouter>
-        <BobComponent />
         <Navbar user={user} />
 
         <Row className="main-view justify-content-md-center">
@@ -218,4 +219,8 @@ export class MainView extends React.Component {
   }
 }
 
-export default MainView;
+let mapStateToProps = (state) => {
+  return { movies: state.movies };
+};
+
+export default connect(mapStateToProps, { setMovies })(MainView);
