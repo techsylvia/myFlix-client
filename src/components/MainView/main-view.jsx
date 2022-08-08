@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
-
 import { LoginView } from "../LoginView/login-view";
 import { MovieView } from "../MovieView/movie-view";
 import { MovieCard } from "../MovieCard/movie-card";
@@ -11,17 +10,23 @@ import { Navbar } from "../Navbar/navbar";
 import { ProfileView } from "../ProfileView/profile-view";
 import { DirectorView } from "../DirectorView/director-view";
 import { GenreView } from "../GenreView/genre-view";
-import { BobComponent } from "../LoginView/bob";
+
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { setMovies } from "../../actions/actions";
+
+import MoviesList from "../movies-list/movies-list";
+
 export class MainView extends React.Component {
   //way to identify whether there was a user click or not.
   constructor() {
     super();
     // Initial state is set to null
     this.state = {
-      movies: [],
-      selectedMovie: null,
+      //   movies: [],
+      //  selectedMovie: null,
       user: null,
-      token: null,
+      //  token: null,
     };
   }
 
