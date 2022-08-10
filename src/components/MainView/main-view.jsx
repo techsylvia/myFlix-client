@@ -15,7 +15,6 @@ import { connect } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { setMovies } from "../../actions/actions";
 
-import MoviesList from "../movies-list/movies-list";
 
 export class MainView extends React.Component {
   //way to identify whether there was a user click or not.
@@ -23,24 +22,16 @@ export class MainView extends React.Component {
     super();
     // Initial state is set to null
     this.state = {
-      //   movies: [],
-      //  selectedMovie: null,
       user: null,
-      //  token: null,
     };
   }
 
-  getMovies() {
+  getMovies(token) {
     axios
       .get("https://sylvmovieapp.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${this.state.token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        //     this.setState({
-        //      ...this.state,
-        //      movies: response.data,
-        //       });
-        //    })
         this.props.setMovies(response.data);
       })
       .catch((error) => {
@@ -50,18 +41,16 @@ export class MainView extends React.Component {
 
   componentDidMount() {
     console.log("Did mount");
-    this.state.token = localStorage.getItem("token");
-    this.state.user = localStorage.getItem("user");
-    this.getMovies();
-    if (!this.state.token) return;
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.setState({
+        ...this.state,
+        user: localStorage.getItem("user"),
+      });
+      this.getMovies(token);
+    }
   }
 
-  componentDidUpdate() {
-    console.log("Did update");
-    if (this.state.movies.length > 1) return;
-
-    this.getMovies();
-  }
   /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
   setSelectedMovie(movie) {
     this.setState({
@@ -76,16 +65,16 @@ export class MainView extends React.Component {
     this.setState({
       ...this.state,
       user: data.user.Username,
-      token: data.token,
     });
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", data.user.Username);
+    this.getMovies(data.token);
     // localStorage.setItem("movies", data.movies)
   }
 
   render() {
     let { user } = this.state;
-    let { movies } = this.state;
+    let { movies } = this.props;
     if (!user) {
       user = localStorage.getItem("user");
     }
