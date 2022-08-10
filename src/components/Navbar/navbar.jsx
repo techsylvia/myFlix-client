@@ -1,9 +1,9 @@
 import React from "react";
 import './navbar.scss';
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Navbar as BootNav, Container, Nav } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
-export function Navbar({ user }) {
+export const Navbar = ({ user }) => {
 
   const onLoggedOut = () => {
     localStorage.clear();
@@ -23,9 +23,9 @@ export function Navbar({ user }) {
 
   return (
     <Container>
-      <Navbar bg="light" expand="lg">
+      <BootNav bg="light" expand="lg">
         <Container className="navbar-container">
-          <Navbar.Brand as={Link} to={"/"} href="#home">MyFlix-App</Navbar.Brand>
+          <BootNav.Brand as={Link} to={"/"} href="#home">MyFlix-App</BootNav.Brand>
 
           <Nav className="me-auto navbar-elements__style">
 
@@ -53,7 +53,7 @@ export function Navbar({ user }) {
           </Nav>
 
         </Container>
-      </Navbar>
+      </BootNav>
     </Container>
 
   )
