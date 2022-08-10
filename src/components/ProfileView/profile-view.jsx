@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./profile.scss";
 import { Form, Button, Container, Col, Row, Modal } from "react-bootstrap";
 import axios from "axios";
-import { MovieCard } from "../movieCard/movie-card";
+import { MovieCard } from "../MovieCard/movie-card";
 
 export function ProfileView({ user, movies }) {
   const [username, setUsername] = useState("");
