@@ -1,92 +1,10 @@
-// import React from "react";
-// import PropTypes from "prop-types";
-// import axios from "axios";
-
-// export class MovieView extends React.Component {
-//   constructor() {
-//     super();
-
-//     this.state = {
-//       movies: [],
-//       user: null,
-//     };
-//   }
-//   keypressCallback(event) {
-//     console.log(event.key);
-//   }
-//   componentDidMount() {
-//     document.addEventListener("keypress", this.keypressCallback);
-//   }
-
-//   componentWillUnmount() {
-//     document.removeEventListener("keypress", this.keypressCallback);
-//   }
-
-//   render() {
-//     const { movie, onBackClick } = this.props;
-
-//     return (
-//       <div className="movie-view">
-//         <div className="movie-poster">
-//           <img src={movie.ImagePath} />
-//         </div>
-//         <div className="movie-title">
-//           <span className="label">Title: </span>
-//           <span className="value">{movie.Title}</span>
-//         </div>
-
-//         <div className="movie-description">
-//           <span className="label">Description:</span>
-//           <span className="value">{movie.Description}</span>
-//         </div>
-//         <div className="movie-releaseyear">
-//           <span className="label">ReleaseYear: </span>
-//           <span className="value">{movie.ReleaseYear}</span>
-//         </div>
-//         <div className="movie-runtime">
-//           <span className="label">RunTime: </span>
-//           <span className="value">{movie.RunTime}</span>
-//         </div>
-
-//         <button
-//           onClick={() => {
-//             onBackClick(null);
-//           }}
-//         >
-//           Back
-//         </button>
-//       </div>
-//     );
-//   }
-// }
-
-// MovieView.propTypes = {
-//   movie: PropTypes.shape({
-//     Title: PropTypes.string,
-//     Description: PropTypes.string.isRequired,
-//     ReleaseYear: PropTypes.string.isRequired,
-//     RunTime: PropTypes.string.isRequired,
-//     Genre: PropTypes.shape({
-//       Name: PropTypes.string.isRequired,
-//       Description: PropTypes.string.isRequired,
-//     }),
-//     Director: PropTypes.shape({
-//       Name: PropTypes.string.isRequired,
-//       Bio: PropTypes.string.isRequired,
-//       Birth: PropTypes.string.isRequired,
-//     }),
-//     ImagePath: PropTypes.string,
-//   }).isRequired,
-// };
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Col, Container, Row, Button } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import axios from 'axios';
 
-export class MovieView extends React.Component {
-
+class MovieView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -137,7 +55,7 @@ export class MovieView extends React.Component {
           alert(
             `${this.props.movie.Title} has been added to your list of movies`
           );
-          window.open(`/movies/${this.props.movie._id}`, "_self");
+          this.props.history.push(`/`);
         })
         .catch(e => {
           console.log('Error')
@@ -161,7 +79,7 @@ export class MovieView extends React.Component {
         alert(
           `${this.props.movie.Title} has been removed from your list of movies`
         );
-        window.open(`/movies/${this.props.movie._id}`, "_self");
+        this.props.history.push(`/`);
       })
       .catch(e => {
         console.log('Error')
@@ -199,10 +117,10 @@ export class MovieView extends React.Component {
                 <Button variant="outline-warning" onClick={() => { onBackClick() }}>Back</Button>
 
                 {!isFav && (
-                  <Button className="add-list__button" variant="warning" onClick={this.addFavMovie}>Add to your list</Button>
+                  <Button style={{ marginLeft: '20px' }} variant="warning" onClick={this.addFavMovie}>Add to your list</Button>
                 )}
                 {isFav && (
-                  <Button className="add-list__button" variant="warning" onClick={this.removeFavMovie}>Remove from your list</Button>
+                  <Button style={{ marginLeft: '20px' }} variant="warning" onClick={this.removeFavMovie}>Remove from your list</Button>
                 )}
               </Card.Body>
             </Card>
@@ -224,3 +142,5 @@ MovieView.propTypes = {
   }).isRequired,
   onBackClick: PropTypes.func.isRequired
 };
+
+export default withRouter(MovieView)
